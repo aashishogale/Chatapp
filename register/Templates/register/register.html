@@ -2,12 +2,18 @@
 <head>
     <form action="enter" method="POST">
         {% csrf_token %} 
-        <label for="{{form.username.id_for_label}}"></label>
-        {{form.username}}
+     <div> {{form.username.label}}
+        {{form.username}}</div>
         
 
-        <label for="{{form.password.id_for_label}}"></label>
-        {{form.password}}
+ <div>   {{form.password.label}}
+        {{form.password}}</div>
+        <div>{{form.firstname.label}}
+            {{form.firstname}}
+        </div>
+        <div>{{form.lastname.label}}
+                {{form.lastname}}
+            </div>
         <input type='submit' name='button'>
     </form>
 </head>

@@ -10,11 +10,18 @@ from .forms import RegisterForm
 
 # Create your views here
 def fillinform(request):
-    login_name=request.POST.get('name')
-    login_password=request.POST.get('password')
-    user=User.objects.create_user(login_name,password=login_password)
-    user.save()
-    return HttpResponseRedirect(reverse('register:login'))
+    if request.method=='POST':
+       
+        form=RegisterForm(request.POST)
+        if form.is_valid():
+
+            login_name=form.cleaned_data.get('username')
+            login_password=form.cleaned_data.get('password')
+            login_firstname=form.cleaned_data.get('firstname')
+            login_last_name=form.cleaned_data.get('lastname')
+            user=User.objects.create_user(login_name,password=login_password,first_name=login_firstname,last_name=login_last_name)
+            user.save()
+            return HttpResponseRedirect(reverse('register:login'))
 
 def showform(request):
     
@@ -27,15 +34,18 @@ def showform(request):
 
 def showLogin(request):
     
-    context={}
-    template=loader.get_template('register/login.html')
-    return  HttpResponse(template.render(context,request))
+    form=RegisterForm()
+    return render(request,'register/login.html',{'form':form})
 
 def checklogin(request):
-   user=authenticate(request,username=request.POST.get('name'),password=request.POST.get('password'))
-   if user is not None:
-       login(request,user)
-  
-       return HttpResponse('welcome')
+      if request.method=='POST':
+       
+        form=RegisterForm(request.POST)
+        if form.is_valid():
+            user=authenticate(request,username=form.cleaned_data.get('username'),password=form.cleaned_data.get('password'))
+            if user is not None:
+                login(request,user)
+            
+                return HttpResponse('welcome')
     
-   return HttpResponse('wrong password')
+      return HttpResponse('wrong password')
