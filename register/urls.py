@@ -1,10 +1,12 @@
 from django.conf.urls import url, include
 from django.contrib import admin
-from . import views
 
+from . import views
+from django.urls import path
+app_name="register"
 urlpatterns=[
-    url(r'^register',views.showform,name='register'),
-    url(r'^enter',views.fillinform,name='enter'),
-    url(r'^loginpage',views.showLogin,name='login'),
-    url(r'^checklogin',views.checklogin,name='checklogin'),
+    path('register',views.showform,name='register'),
+    path('enter',views.fillinform,name='enter'),
+    path('loginpage',views.showLogin,name='login'),
+    path('checklogin',views.checklogin,name='checklogin'),
 ]

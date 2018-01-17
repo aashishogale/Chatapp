@@ -31,13 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'register.apps.RegisterConfig',
+ 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
+    'register'
 ]
 
 MIDDLEWARE = [
@@ -124,3 +126,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+# ''' 
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'asgi_redis.RedisChannelLayer',
+#         'CONFIG': {
+#             'hosts': [('localhost', 6379)],
+#         },
+#         'ROUTING': 'newchatapp.routing.channel_routing',
+#     }
+# } '''

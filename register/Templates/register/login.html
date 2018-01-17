@@ -1,10 +1,12 @@
 <!Doctype html>
+<html>
 <head>
 
 </head>
 <body>
-    <form action='checklogin' action='GET'>
-        <label>enter name</label>
+    <form action='checklogin' method="POST">
+            {% csrf_token %} 
+     <label>enter name</label>
     <input type="text" name='name'>
     <label>enter password</label>
     <input type="text" name='password'>
