@@ -1,20 +1,133 @@
 <!Doctype Html>
-<head>
-    <form action="enter" method="POST">
-        {% csrf_token %} 
-     <div> {{form.username.label}}
-        {{form.username}}</div>
-        
 
- <div>   {{form.password.label}}
-        {{form.password}}</div>
-        <div>{{form.firstname.label}}
-            {{form.firstname}}
-        </div>
-        <div>{{form.lastname.label}}
-                {{form.lastname}}
-            </div>
-        <input type='submit' name='button'>
-    </form>
+<html lang="en">
+  
+<head>
+       
+    <!-- Standard Meta -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <!-- Site Properties -->
+    <title>Bootstrap 4 Register Form</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+
+    {% load static %}
+    <script type="text/javascript" src="{% static "script/validation.js"%}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+   
+
 </head>
-</Html>
+<body>
+        
+        <div class="container">
+            <!-- display messages -->
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}    <li>{{ message }}</li>{% endif %}
+                 
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form class="well form-horizontal" action="enter" method="POST"  id="contact_form">
+      
+                    <fieldset>
+            
+            <!-- Form Name -->
+            <legend><center><h2><b>Registration Form</b></h2></center></legend><br>
+
+               <!-- Text input-->
+            
+               <div class="form-group">
+                    <div class="col-md-4 control-label">{{form.username.label}}</div>  
+                    <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                   {{form.username}}
+                      </div>
+                    </div>
+                    <div class=col-md-4><span id="usernameerror"></span></div>
+                  </div>
+            
+            <!-- Text input-->
+            
+            <div class="form-group">
+              <div class="col-md-4 control-label">{{form.firstname.label}}</div>  
+              <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            {{form.firstname}}
+                </div>
+              </div>
+              <div class=col-md-4><span id="firstnameerror"></span></div>
+            </div>
+            
+            <!-- Text input-->
+            
+            <div class="form-group">
+              <div class="col-md-4 control-label" >{{form.lastname.label}}</div> 
+                <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              {{form.lastname}}
+                </div>
+              </div>
+              <div class=col-md-4><span id="lastnameerror"></span></div>
+            </div>
+            
+              
+         
+            
+            <!-- Text input-->
+            
+            <div class="form-group">
+              <div class="col-md-4 control-label" >{{form.password.label}}</div> 
+                <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
+              {{form.password}}
+                </div>
+              </div>
+              <div class=col-md-4><span id="passworderror"></span></div>
+            </div>
+            
+           
+            
+            <!-- Text input-->
+                   <div class="form-group">
+              <div class="col-md-4 control-label">{{form.email.label}}</div>  
+                <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+             {{form.email}}
+                </div>
+              </div>
+              <div class=col-md-4><span id="emailerror"></span></div>
+            </div>
+            
+            
+       
+            
+            <!-- Select Basic -->
+            
+          
+            
+            <!-- Button -->
+            <div class="form-group">
+              <label class="col-md-4 control-label"></label>
+              <div class="col-md-4"><br>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning" onclick="checkvalid();">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+              </div>
+            </div>
+            
+            </fieldset>
+            </form>
+            </div>
+                </div>
+</body>
