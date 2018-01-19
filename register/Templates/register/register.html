@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
 
-    {% load static %}
-    <script type="text/javascript" src="{% static "script/validation.js"%}"></script>
+   {% load static %}
+    <script type="text/javascript" src="{% static "script/validation.js"%}"></script> 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
    
@@ -33,6 +33,7 @@
                     {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}    <li>{{ message }}</li>{% endif %}
                  
                     {% endfor %}
+                    {{form.errors}}
                 </ul>
                 {% endif %}
                 <form class="well form-horizontal" action="enter" method="POST"  id="contact_form">

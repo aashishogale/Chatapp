@@ -6,18 +6,19 @@ from django.template import loader
 from django.urls import reverse
 from .models import NewRegister
 from .forms import RegisterForm, LoginForm
-from django.views.decorators.csrf import csrf_exempt
+# from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
 from django.contrib import messages
 
 
 
 # Create your views here
-@csrf_exempt
+
 def fillinform(request):
     if request.method == 'POST':
         print("hello")
         form = RegisterForm(request.POST)
+        print("hel",form.is_valid(),form.errors)
         if form.is_valid():
 
             login_name = form.cleaned_data.get('username')
@@ -33,14 +34,16 @@ def fillinform(request):
                     last_name=login_last_name,
                     email=login_email)
                 user.save()
+                messages.info(request,"you are successful")
+                return redirect(reverse('register:login'))
             except IntegrityError :
                 messages.warning(request,"user name or email already exists")
                 return redirect(reverse('register:register'))
-            print("hello")
-            messages.info(request,"you are successful")
-            return redirect(reverse('register:login'))
+            except :
+                messages.warning(request,"system error")
+                return redirect(reverse('register:register'))
         else:
-            
+            messages.warning(request,"fill all details")
             return render(request, 'register/register.html', {'form': form})
 
 def showform(request):

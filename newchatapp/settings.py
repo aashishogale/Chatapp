@@ -57,7 +57,7 @@ ROOT_URLCONF = 'newchatapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/bridgelabz/newchatapp/register/Templates/',],
+        'DIRS': ['/home/bridgelabz/newchatapp/register/Templates/','/home/bridgelabz/newchatapp/chat/Templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,13 +132,13 @@ STATICFILES_DIRS = [
 ]
 
 
-# ''' 
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': 'asgi_redis.RedisChannelLayer',
-#         'CONFIG': {
-#             'hosts': [('localhost', 6379)],
-#         },
-#         'ROUTING': 'newchatapp.routing.channel_routing',
-#     }
-# } '''
+
+CHANNEL_LAYERS = {
+    'default': {
+       'BACKEND': 'asgi_redis.RedisChannelLayer',
+       'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        },
+        'ROUTING': 'newchatapp.routing.channel_routing',
+    }
+} 

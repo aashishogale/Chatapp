@@ -1,8 +1,12 @@
 from channels.routing import route
-from example.consumers import ws_connect, ws_disconnect
+
+
+
+def message_handler(message):
+    print(message['text'])
 
 
 channel_routing = [
-    route('websocket.connect', ws_connect),
-    route('websocket.disconnect', ws_disconnect),
+    route('websocket.connect', 'register.consumers.ws_add', path=r'^/chat/(?P<room>\w+)$'),
+    route("websocket.receive", 'register.consumers.ws_echo'),  # we register our message handler
 ]
