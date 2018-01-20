@@ -4,12 +4,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.urls import reverse
-from .models import NewRegister
+from .models import ChatMessages
 from .forms import RegisterForm, LoginForm
 # from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
 from django.contrib import messages
-
+from django.views import generic
 
 
 # Create your views here
@@ -74,10 +74,13 @@ def checklogin(request):
             user = authenticate(request,username=login_username,password=login_password)
             print(form.cleaned_data.get('login_username'))
             print(form.cleaned_data.get('login_password'))
+        
+            chat=ChatMessages.showmessage.all()
             if user is not None:
                 login(request, user)
-                return render(request,'register/welcome.html',{'name':user.username})
+                return render(request,'register/welcome.html',{'name':user.username,'chatlist':chat})
                 # return HttpResponse('welcome')
 
     return render(request, 'register/login.html', {'form': form})
     # return HttpResponse('wrong password')
+

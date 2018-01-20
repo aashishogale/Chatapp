@@ -21,8 +21,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 </head>
 <body>
-    <!-- Where all the magic happens -->
+   
     <!-- LOGIN FORM -->
+  
     <div class="text-center" style="padding:50px 0">
         <div class="logo">login</div>
         <!-- Main Form -->
@@ -35,7 +36,7 @@
                 </ul>
                 {% endif %}
             <form  class="text-left" action='checklogin' method='POST' enctype= "multipart/form-data">
-            
+                {% csrf_token %}
                 <div class="login-form-main-message"></div>
                 <div class="main-login-form">
                     <div class="login-group">

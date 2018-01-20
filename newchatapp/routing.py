@@ -7,6 +7,6 @@ def message_handler(message):
 
 
 channel_routing = [
-    route('websocket.connect', 'register.consumers.ws_add', path=r'^/chat/(?P<room>\w+)$'),
+    route('websocket.connect', 'register.consumers.ws_add', path=r'^/chat/$'),
     route("websocket.receive", 'register.consumers.ws_echo'),  # we register our message handler
 ]

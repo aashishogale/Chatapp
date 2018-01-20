@@ -32,10 +32,10 @@
                     $("<td></td>").text(data.created)
                 )
                 ele.append(
-                    $("<td></td>").text(data.user)
+                    $("<td></td>").text(data.username)
                 )
                 ele.append(
-                    $("<td></td>").text(data.content)
+                    $("<td></td>").text(data.message)
                 )
         
                 chat.append(ele)
@@ -43,9 +43,9 @@
         
             $(".sendbtn").on("click", function(event) {
                 var message = {
-                    username: 'ashish',
-                    text: 'Hello',
-                    room: 'public'
+                    username: '{{name}}',
+                    text: $("#message").val()
+                
                 }
                 chatsock.send(JSON.stringify(message));
                 $("#message").val('').focus();
