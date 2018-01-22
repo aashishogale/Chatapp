@@ -1,6 +1,7 @@
 import json
+import datetime
 from urllib import parse
-
+from django.utils import timezone
 from channels import Group
 from channels.sessions import channel_session
 from channels.auth import channel_session_user, channel_session_user_from_http
@@ -48,6 +49,7 @@ def ws_echo(message):
     Group('chat').send({
         'text': json.dumps({
             'message': data['text'],
-            'username': data['username']
+            'username': data['username'],
+            'created': data['created']
         }),
     })
