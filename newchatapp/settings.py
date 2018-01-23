@@ -38,18 +38,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'online_users',
     'channels',
-    'register'
+    'register',
+    'lastActivityDate'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'online_users.middleware.OnlineNowMiddleware',
+    # 'lastActivityDate.LastActivityMiddleware.LastActivityMiddleware',
     'django.middleware.common.CommonMiddleware',
     #  'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+   
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware',
+    # 'newchatapp.middleware.OnlineNowMiddleware',
+    # 'active_users.middleware.ActiveUsersSessionMiddleware'
 ]
 
 ROOT_URLCONF = 'newchatapp.urls'
@@ -131,7 +140,7 @@ STATICFILES_DIRS = [
     '/var/www/static/',
 ]
 
-
+# ACTIVE_USERS_KEY_CLASS = 'newchatapp.keys.OurActiveUserEntry'
 
 CHANNEL_LAYERS = {
     'default': {

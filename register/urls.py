@@ -9,6 +9,7 @@ urlpatterns=[
     path('enter',views.fillinform,name='enter'),
     path('loginpage',views.showLogin,name='login'),
     path('checklogin',views.checklogin,name='checklogin'),
-    path('logout',views.logout_view,name='logout')
+    path('logout',views.logout_view,name='logout'),
+    path('welcome',views.welcome,name='welcome')
   
 ]

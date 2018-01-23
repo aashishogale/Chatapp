@@ -19,6 +19,23 @@
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <script >
+      
+
+    $(function() {
+        // When we're using HTTPS, use WSS too.
+        var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        var chatsock = new WebSocket(window.location.protocol == "https:" ? "wss" : "ws" + '://' + window.location.host + "/chat/?username=1");
+        chatsock.onopen = function open(){
+            console.log("open")
+
+        }
+        if(chatsock.readyState == WebSocket.OPEN){
+            chatsock.onopen();
+        }
+    })
+    </script>
 </head>
 <body>
    

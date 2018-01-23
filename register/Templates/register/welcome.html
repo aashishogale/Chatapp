@@ -45,9 +45,10 @@
           </ul>
         </div>
         <div class="member_list">
-          <ul class="list-unstyled">
-            {% if loggedinusers %}
-          {% for user in loggedinusers%}
+          <ul class="list-unstyled" id ="loggedin">
+
+           
+          {% for user in request.online_now%}
          
               
               <li>
@@ -59,7 +60,7 @@
               </li>
              
               {% endfor %} 
-              {%endif%}
+       
           </ul>
         </div>
       </div>

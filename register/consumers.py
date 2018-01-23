@@ -50,6 +50,7 @@ def ws_echo(message):
         'text': json.dumps({
             'message': data['text'],
             'username': data['username'],
-            'created': data['created']
+            'created': data['created'],
+           
         }),
     })

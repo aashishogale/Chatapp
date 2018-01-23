@@ -22,7 +22,7 @@
                 $('.dropdown-toggle').dropdown();
             })
             var d = new Date();
-            var n = d.toLocaleTimeString('en-US', { hour: 'numeric',minute:'numeric', hour12: true });
+           var n = d.toLocaleString('en-US', { year:'numeric',month:'short',day:'numeric',hour: 'numeric',minute:'numeric', hour12: true });
 
 
         $(function() {
@@ -31,6 +31,7 @@
             var chatsock = new WebSocket(window.location.protocol == "https:" ? "wss" : "ws" + '://' + window.location.host + "/chat/?username=1");
             chatsock.onopen = function open( ){
                 console.log("open")
+
             }
             if(chatsock.readyState == WebSocket.OPEN){
                 chatsock.onopen();
@@ -39,7 +40,9 @@
                 console.log('test',message)
                 var data = JSON.parse(message.data);
                 var chat = $("#chat")
+                var users=$("#loggedin")
                 var ele = $('<li></li>')
+                var logged=$('<li></li>')
             
                 ele.append(
                     $("<p></p>").text(data.message)
@@ -50,10 +53,14 @@
                 ele.append(
                     $("#date").text(data.created)
                 )
-               
               
-        
+             logged.append(
+                    $("#chatusers").text(data.loggedin)
+                )
+            users.append(logged)
+            
                 chat.append(ele)
+
             };
         
             $(".sendbtn").on("click", function(event) {
@@ -74,7 +81,7 @@
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-default" role="navigation">
+        <nav class="navbar navbar-default  " role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -87,7 +94,7 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
                     <li class="active">
                         <a href="#">
                             <span class="glyphicon glyphicon-home"></span>Dashboard</a>
@@ -95,7 +102,7 @@
 
       
                
-                    <li class="dropdown">
+                    <li class="dropdown ">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-user"></span>Admin
                             <b class="caret"></b>
@@ -103,12 +110,9 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="#">
-                                    <span class="glyphicon glyphicon-user"></span>Profile</a>
+                                    <span class="glyphicon glyphicon-user"></span>{{name}}</a>
                             </li>
-                            <li>
-                                <a href="#">
-                                    <span class="glyphicon glyphicon-cog"></span>Settings</a>
-                            </li>
+                           
                             <li class="divider"></li>
                             <li>
                                 <a href="logout">
